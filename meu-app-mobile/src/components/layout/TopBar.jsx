@@ -4,7 +4,7 @@ export default function TopBar({ showSearch = false, title = 'FreqlesS' }) {
   const navigate = useNavigate();
 
   return (
-    <header className="sticky top-0 z-40 bg-[#141414] border-b border-[#1e1e1e] flex items-center justify-between px-4 py-3">
+    <header className="sticky top-0 z-40 bg-black border-b border-[var(--border)] flex items-center justify-between px-4 py-3">
       {showSearch ? (
         <button className="text-white text-xl">🔍</button>
       ) : (

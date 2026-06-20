@@ -31,10 +31,10 @@ const alerts = [
 // ── Sub-components ─────────────────────────────────────────────────────────
 function StatCard({ label, value, icon, color }) {
   const colors = {
-    red:    'bg-red-500/10 border-red-800/30 text-red-400',
-    orange: 'bg-orange-500/10 border-orange-800/30 text-orange-400',
-    blue:   'bg-blue-500/10 border-blue-800/30 text-blue-400',
-    green:  'bg-green-500/10 border-green-800/30 text-green-400',
+    red:    'bg-white/6 border-[var(--field-border)] text-white/80',
+    orange: 'bg-white/6 border-[var(--field-border)] text-white/80',
+    blue:   'bg-white/6 border-[var(--field-border)] text-white/80',
+    green:  'bg-white/6 border-[var(--field-border)] text-white/80',
   };
   return (
     <div className={`rounded-2xl border p-4 ${colors[color]}`}>
@@ -47,9 +47,9 @@ function StatCard({ label, value, icon, color }) {
 
 function RiskBadge({ risk }) {
   const styles = {
-    alto:  'bg-red-500/20 text-red-400 border-red-700/30',
-    médio: 'bg-orange-500/20 text-orange-400 border-orange-700/30',
-    baixo: 'bg-green-500/20 text-green-400 border-green-700/30',
+    alto:  'bg-white/6 text-white/80 border-[var(--field-border)]',
+    médio: 'bg-white/6 text-white/80 border-[var(--field-border)]',
+    baixo: 'bg-white/6 text-white/80 border-[var(--field-border)]',
   };
   return (
     <span className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded-full border ${styles[risk]}`}>
@@ -59,16 +59,16 @@ function RiskBadge({ risk }) {
 }
 
 function TrendIcon({ trend }) {
-  if (trend === 'down')   return <span className="text-red-400 text-sm">↓</span>;
-  if (trend === 'up')     return <span className="text-green-400 text-sm">↑</span>;
-  return <span className="text-[#555] text-sm">→</span>;
+  if (trend === 'down')   return <span className="text-white/80 text-sm">↓</span>;
+  if (trend === 'up')     return <span className="text-white/80 text-sm">↑</span>;
+  return <span className="text-white/60 text-sm">→</span>;
 }
 
 function AlertBanner({ alert }) {
   const styles = {
-    danger:  { border: 'border-red-800/40',    bg: 'bg-red-900/20',    icon: '🚨', text: 'text-red-300' },
-    warning: { border: 'border-orange-800/40', bg: 'bg-orange-900/20', icon: '⚠️', text: 'text-orange-300' },
-    info:    { border: 'border-blue-800/40',   bg: 'bg-blue-900/20',   icon: 'ℹ️', text: 'text-blue-300' },
+    danger:  { border: 'border-[var(--field-border)]',    bg: 'bg-white/6',    icon: '🚨', text: 'text-white/80' },
+    warning: { border: 'border-[var(--field-border)]',    bg: 'bg-white/6',    icon: '⚠️', text: 'text-white/80' },
+    info:    { border: 'border-[var(--field-border)]',    bg: 'bg-white/6',    icon: 'ℹ️', text: 'text-white/80' },
   };
   const s = styles[alert.type];
   return (
@@ -85,14 +85,14 @@ function MiniBarChart({ data }) {
     <div className="flex items-end gap-2 h-20">
       {data.map(({ day, pct }) => {
         const h = Math.round((pct / max) * 100);
-        const color = pct >= 85 ? 'bg-green-500' : pct >= 70 ? 'bg-orange-500' : 'bg-red-500';
+        const color = 'bg-white/70';
         return (
           <div key={day} className="flex-1 flex flex-col items-center gap-1">
-            <span className="text-[9px] text-[#555]">{pct}%</span>
+            <span className="text-[9px] text-white/60">{pct}%</span>
             <div className="w-full rounded-t-md transition-all" style={{ height: `${h}%` }}>
               <div className={`w-full h-full rounded-t-md ${color}`} />
             </div>
-            <span className="text-[10px] text-[#555]">{day}</span>
+            <span className="text-[10px] text-white/60">{day}</span>
           </div>
         );
       })}
@@ -122,32 +122,32 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0f0f0f] text-white pb-10">
+    <div className="min-h-screen bg-black text-white pb-10">
 
       {/* ── Header ── */}
-      <div className="bg-[#141414] border-b border-[#1e1e1e] px-4 py-4 flex items-center justify-between sticky top-0 z-50">
+      <div className="bg-black border-b border-[var(--border)] px-4 py-4 flex items-center justify-between sticky top-0 z-50">
         <div>
           <div className="flex items-center gap-2">
             <span className="text-lg font-black tracking-tight text-white">FreqlesS</span>
-            <span className="text-[10px] bg-[#4F6EF7]/20 text-[#4F6EF7] px-2 py-0.5 rounded-full font-bold uppercase border border-[#4F6EF7]/30">Admin</span>
+            <span className="text-[10px] bg-white/6 text-white px-2 py-0.5 rounded-full font-bold uppercase border border-[var(--field-border)]">Admin</span>
           </div>
-          <p className="text-[#555] text-xs mt-0.5">Painel de Evasão Escolar</p>
+          <p className="text-white/60 text-xs mt-0.5">Painel de Evasão Escolar</p>
         </div>
-        <button onClick={() => navigate('/login')} className="text-[#444] text-xs hover:text-[#777] transition">
+        <button onClick={() => navigate('/login')} className="text-white/60 text-xs hover:text-white/80 transition">
           Sair →
         </button>
       </div>
 
       {/* ── Tabs ── */}
-      <div className="flex border-b border-[#1e1e1e] bg-[#141414]">
+      <div className="flex border-b border-[var(--border)] bg-black">
         {tabs.map(t => (
           <button
             key={t.id}
             onClick={() => setTab(t.id)}
             className={`flex-1 py-3 text-xs font-semibold transition-all border-b-2 ${
               tab === t.id
-                ? 'border-[#4F6EF7] text-[#4F6EF7]'
-                : 'border-transparent text-[#444] hover:text-[#777]'
+                ? 'border-[var(--accent-border)] text-white'
+                : 'border-transparent text-white/60 hover:text-white'
             }`}
           >
             {t.label}
@@ -169,21 +169,21 @@ export default function AdminDashboard() {
             </div>
 
             {/* Weekly chart */}
-            <div className="bg-[#1a1a1a] rounded-2xl border border-[#252525] p-4">
+            <div className="bg-[var(--field-bg)] rounded-2xl border border-[var(--field-border)] p-4">
               <h3 className="text-white text-sm font-bold mb-3">Frequência semanal</h3>
               <MiniBarChart data={weeklyAttendance} />
-              <p className="text-[#444] text-[10px] mt-2 text-center">Média: 78% — abaixo do ideal (85%)</p>
+              <p className="text-white/60 text-[10px] mt-2 text-center">Média: 78% — abaixo do ideal (85%)</p>
             </div>
 
             {/* Top at-risk students */}
-            <div className="bg-[#1a1a1a] rounded-2xl border border-[#252525] p-4">
+            <div className="bg-[var(--field-bg)] rounded-2xl border border-[var(--field-border)] p-4">
               <h3 className="text-white text-sm font-bold mb-3">🚨 Alunos críticos</h3>
               <div className="space-y-3">
                 {students.filter(s => s.risk === 'alto').map(s => (
                   <div key={s.id} className="flex items-center justify-between">
                     <div>
                       <p className="text-white text-sm font-semibold">{s.name}</p>
-                      <p className="text-[#555] text-xs">{s.class} · {s.absences} faltas · visto {s.lastSeen}</p>
+                      <p className="text-white/60 text-xs">{s.class} · {s.absences} faltas · visto {s.lastSeen}</p>
                     </div>
                     <TrendIcon trend={s.trend} />
                   </div>
@@ -192,14 +192,14 @@ export default function AdminDashboard() {
             </div>
 
             {/* Evasion risk summary bar */}
-            <div className="bg-[#1a1a1a] rounded-2xl border border-[#252525] p-4">
+            <div className="bg-[var(--field-bg)] rounded-2xl border border-[var(--field-border)] p-4">
               <h3 className="text-white text-sm font-bold mb-3">Distribuição de risco</h3>
               <div className="flex rounded-full overflow-hidden h-3 mb-2">
-                <div className="bg-red-500"    style={{ width: `${(riskCounts.alto  / students.length) * 100}%` }} />
-                <div className="bg-orange-500" style={{ width: `${(riskCounts.médio / students.length) * 100}%` }} />
-                <div className="bg-green-500"  style={{ width: `${(riskCounts.baixo / students.length) * 100}%` }} />
+                <div className="bg-white/70"    style={{ width: `${(riskCounts.alto  / students.length) * 100}%` }} />
+                <div className="bg-white/50"    style={{ width: `${(riskCounts.médio / students.length) * 100}%` }} />
+                <div className="bg-white/30"    style={{ width: `${(riskCounts.baixo / students.length) * 100}%` }} />
               </div>
-              <div className="flex justify-between text-[10px] text-[#555]">
+              <div className="flex justify-between text-[10px] text-white/60">
                 <span>🔴 Alto: {riskCounts.alto}</span>
                 <span>🟠 Médio: {riskCounts.médio}</span>
                 <span>🟢 Baixo: {riskCounts.baixo}</span>
@@ -219,8 +219,8 @@ export default function AdminDashboard() {
                   onClick={() => setFilter(f)}
                   className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all capitalize ${
                     filter === f
-                      ? 'bg-[#4F6EF7] text-white'
-                      : 'bg-[#1e1e1e] text-[#555] border border-[#2a2a2a] hover:text-[#aaa]'
+                      ? 'bg-white text-black'
+                      : 'bg-[var(--field-bg)] text-white/60 border border-[var(--field-border)] hover:text-white'
                   }`}
                 >
                   {f}
@@ -234,19 +234,19 @@ export default function AdminDashboard() {
                 <button
                   key={s.id}
                   onClick={() => setSelectedStudent(selectedStudent?.id === s.id ? null : s)}
-                  className="w-full text-left bg-[#1a1a1a] rounded-2xl border border-[#252525] p-4 active:bg-[#222] transition"
+                  className="w-full text-left bg-[var(--field-bg)] rounded-2xl border border-[var(--field-border)] p-4 active:bg-[var(--field-border)] transition"
                 >
                   <div className="flex items-center justify-between mb-1">
                     <div className="flex items-center gap-2">
                       <span className="text-white text-sm font-semibold">{s.name}</span>
-                      <span className="text-[#444] text-xs">{s.class}</span>
+                      <span className="text-white/60 text-xs">{s.class}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <TrendIcon trend={s.trend} />
                       <RiskBadge risk={s.risk} />
                     </div>
                   </div>
-                  <div className="flex items-center gap-4 text-xs text-[#555]">
+                  <div className="flex items-center gap-4 text-xs text-white/60">
                     <span>📅 {s.absences} faltas</span>
                     <span>🔥 {s.streak} dias seguidos</span>
                     <span>👁 {s.lastSeen}</span>
@@ -254,16 +254,16 @@ export default function AdminDashboard() {
 
                   {/* Expanded detail */}
                   {selectedStudent?.id === s.id && (
-                    <div className="mt-3 pt-3 border-t border-[#252525] space-y-2">
+                      <div className="mt-3 pt-3 border-t border-[var(--field-border)] space-y-2">
                       <div className="flex gap-2">
-                        <button className="flex-1 py-2 bg-[#4F6EF7]/20 border border-[#4F6EF7]/30 rounded-xl text-[#4F6EF7] text-xs font-semibold">
+                        <button className="flex-1 py-2 bg-white/6 border border-[var(--field-border)] rounded-xl text-white text-xs font-semibold">
                           📨 Enviar mensagem
                         </button>
-                        <button className="flex-1 py-2 bg-red-500/10 border border-red-800/30 rounded-xl text-red-400 text-xs font-semibold">
+                        <button className="flex-1 py-2 bg-white/6 border border-[var(--field-border)] rounded-xl text-white text-xs font-semibold">
                           📞 Contatar família
                         </button>
                       </div>
-                      <p className="text-[#444] text-[10px]">
+                      <p className="text-white/60 text-[10px]">
                         Intervenção recomendada: {s.risk === 'alto' ? 'Urgente — contato imediato com responsáveis.' : s.risk === 'médio' ? 'Monitorar e enviar notificação.' : 'Sem ação necessária.'}
                       </p>
                     </div>
@@ -277,7 +277,7 @@ export default function AdminDashboard() {
         {/* ════════════════ ALERTAS ════════════════ */}
         {tab === 'alertas' && (
           <>
-            <p className="text-[#555] text-xs">
+            <p className="text-white/60 text-xs">
               {alerts.length} alertas ativos — {alerts.filter(a => a.type === 'danger').length} críticos
             </p>
             <div className="space-y-3">
@@ -285,7 +285,7 @@ export default function AdminDashboard() {
             </div>
 
             {/* Action button */}
-            <button className="w-full mt-2 py-3 bg-[#1a1a1a] border border-[#252525] rounded-2xl text-[#4F6EF7] text-sm font-semibold hover:bg-[#1e1e1e] transition">
+            <button className="w-full mt-2 py-3 bg-[var(--field-bg)] border border-[var(--field-border)] rounded-2xl text-white text-sm font-semibold hover:bg-[var(--field-border)] transition">
               📤 Exportar relatório de evasão
             </button>
           </>

@@ -2,10 +2,10 @@ export default function Button({ children, variant = 'primary', className = '', 
   const base = 'w-full py-3 rounded-xl font-semibold text-sm transition-all duration-200 active:scale-95';
 
   const variants = {
-    primary: 'bg-[#4F6EF7] hover:bg-[#3d5ce0] text-white',
-    google: 'bg-transparent border border-[#333] text-white flex items-center justify-center gap-2 hover:bg-[#1e1e1e]',
-    ghost: 'bg-transparent text-[#4F6EF7] hover:underline',
-    danger: 'bg-gradient-to-r from-red-500 to-orange-500 text-white hover:opacity-90',
+    primary: 'bg-white text-black hover:bg-gray-200',
+    google: 'bg-transparent border border-[var(--field-border)] text-white flex items-center justify-center gap-2 hover:bg-white/5',
+    ghost: 'bg-transparent text-white hover:underline',
+    danger: 'bg-white/90 text-black hover:opacity-90',
   };
 
   return (

@@ -9,8 +9,8 @@ import AdminDashboard from './components/pages/AdminDashboard';
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-[#141414] flex justify-center">
-        <div className="w-full max-w-[430px] relative">
+      <div className="min-h-screen bg-black flex justify-center">
+        <div className="w-full max-w-[430px] md:max-w-[900px] relative">
           <Routes>
             <Route path="/" element={<Navigate to="/login" />} />
             <Route path="/criar-conta" element={<CreateAccount />} />
